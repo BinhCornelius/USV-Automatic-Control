@@ -41,11 +41,7 @@
   int speed_2 = 0;
 
 // MPU6050
-  // MPU6050 mpu6050(Wire);
-
-//Compass
-  QMC5883LCompass compass;
-  float compass_reading;  
+   MPU6050 mpu6050(Wire);
   
 
 // GPS
@@ -89,8 +85,8 @@
   const int look_ahead = 100;
   char gpsData[50];
   // PID paramater
-  const float Kp_u = 10, Ki_u = 1.5, Kd_u = 0;
-  const float Kp_yaw = 2, Ki_yaw = 0.005, Kd_yaw = 0;
+  const float Kp_u = 20, Ki_u = 2.5, Kd_u = 5;
+  const float Kp_yaw = 5, Ki_yaw = 0.01, Kd_yaw = 5;
   float integral_u = 0, derivative_u = 0, integral_yaw = 0, derivative_yaw = 0;
   unsigned long previousMillis = 0;
   unsigned long previousMillis2 = 0; // Biến để lưu thời gian trước đó
@@ -334,11 +330,8 @@ void setup() {
   pinMode(pin_turn, INPUT); 
 
   // MPU6050 SETUP
-  // mpu6050.begin();
-  // mpu6050.calcGyroOffsets(true);
-
-  // COMPASS SETUP
-  compass.init();
+   mpu6050.begin();
+   mpu6050.calcGyroOffsets(true);
   
   // GPS SETUP
   ss.begin(GPSBaud);
@@ -392,13 +385,8 @@ void loop() {
     Serial.print("; "); 
   
     // MPU6050 reading
-      //mpu6050.update();
-
-    // Compass reading
-      compass.read();
-      compass_reading = map(compass.getAzimuth(),0,180,180,0);
-       
-      //compass_reading = map(mpu6050.getAngleZ(),0,180,180,0);
+      mpu6050.update();
+      compass_reading = map(mpu6050.getAngleZ(),0,180,180,0);
       Serial.printf("Compass: %f; ", compass_reading);
       
     // GPS
@@ -409,12 +397,6 @@ void loop() {
             valid = true;
           usv_lat = gps.location.lat();
           usv_lng = gps.location.lng();
-            
-            // char gpsData[50];
-            // snprintf(gpsData, sizeof(gpsData), "%0.15f,%0.15f", usv_lat, usv_lng);
-            // Udp.beginPacket(qtIp, 12345); // IP và port UDP gửi cho của Qt
-            // Udp.write(gpsData);
-            // Udp.endPacket();
           }
           if (currentMillis - previousMillis >= interval) {
             // Cập nhật thời gian trước đó
