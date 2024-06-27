@@ -24,8 +24,7 @@ Window {
         id: map
         anchors.fill: parent
         plugin: mapPlugin
-        center: QtPositioning.coordinate(21.004107983959077,105.84333981255992) //21.004107983959077, Longitude: 105.84333981255992
-        zoomLevel: 35
+        center: QtPositioning.coordinate(21.004107983959077,105.84333981255992) // Hồ Tiền ĐHBK Hà Nội
 
         Component {
             id: circleComponent
@@ -36,7 +35,7 @@ Window {
                     color: "black"
                     radius: 5
                 }
-                coordinate: QtPositioning.coordinate(21.00618786830872,105.84315652615584) //21.00618786830872,105.84315652615584
+                coordinate: QtPositioning.coordinate(21.00618786830872,105.84315652615584) // Hồ Tiền ĐHBK Hà Nội
                 anchorPoint.x: sourceItem.width / 2
                 anchorPoint.y: sourceItem.height / 2
             }
@@ -187,20 +186,6 @@ Window {
             gpsMarker.visible = true;
         }
     }
-
-    // Timer {
-    //     interval: 1000; running: true; repeat: true
-    //     onTriggered: mapHandler.requestGpsCoordinate()
-    // }
-
-
-
-    // Button {
-    //     text: "Send PWM"
-    //     onClicked: {
-    //         mapHandler.sendPwm(pwmValue1, pwmValue2);
-    //     }
-    // }
 
     Button {
         text: "Enable Key Control"
