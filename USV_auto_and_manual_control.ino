@@ -2,7 +2,6 @@
 // -------------------------------USV TRAJECTORY TRACKING CONTROL-------------------------------
 
 #include <Servo.h>
-#include <TinyGPSPlus.h>
 #include <QMC5883LCompass.h>
 #include <SoftwareSerial.h>
 #include <ESP8266WiFi.h>
