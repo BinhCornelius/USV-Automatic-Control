@@ -18,19 +18,11 @@ void MapHandler::addCoordinate(double latitude, double longitude)
 
 void MapHandler::sendCoordinates(double pathType, double rX, double rY, double omgX, double omgY)
 {
-    // if (coordinates.size() != 5) {
-    //     qWarning() << "Not enough or too many coordinates selected!";
-    //     return;
-    // }
-
     QString coordinateString = "! ";
 
     coordinateString += QString::number(pathType, 'f', 1) + " ";
     coordinateString += " " + QString::number(coordinates[0].latitude(), 'f', 15) + " " + QString::number(coordinates[0].longitude(), 'f', 15) + " ";
 
-    // for (int i = 0; i < 4; ++i) {
-    //     coordinateString += QString::number(coordinates[i].latitude(), 'f', 15) + " " + QString::number(coordinates[i].longitude(), 'f', 15) + " ";
-    // }
 
     coordinateString += " " + QString::number(coordinates[1].latitude(), 'f', 15) + " " + QString::number(coordinates[1].longitude(), 'f', 15) + " ";
     coordinateString += QString::number(rX, 'f', 2) + " ";
@@ -53,14 +45,6 @@ void MapHandler::sendPwm(int pwmValue1, int pwmValue2)
     udpSocket->writeDatagram(datagram_2, QHostAddress("192.168.41.100"), 4210); // Địa chỉ IP và cổng của ESP
     qDebug() << datagram_2;
 }
-
-// void MapHandler::requestGpsCoordinate()
-// {
-//     // Gửi yêu cầu nhận toạ độ GPS từ ESP8266
-//     QByteArray datagram_3 = "request_gps";
-//     udpSocket->writeDatagram(datagram_3, QHostAddress("192.168.41.100"), 4210);
-// }
-
 
 void MapHandler::processPendingDatagrams() {
     while (udpSocket->hasPendingDatagrams()) {
