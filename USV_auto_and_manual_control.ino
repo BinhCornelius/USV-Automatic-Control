@@ -139,6 +139,7 @@ float get_path_x (int _track_time, int _path_type, float _initial_x, float _r_x,
   if (_path_type == 3)
     _x =  _initial_x + _r_x*sin(_omega_x*_track_time*0.001);
   if (_path_type == 4)
+  // ------------Archimedean Spiral-----------
     _x = _initial_x + _r_x*_track_time*0.001*sin(_omega_x*_track_time*0.001);
  return _x;
 }
@@ -156,6 +157,7 @@ float get_path_y (int _track_time, int _path_type, float _initial_y, float _r_y,
   if (_path_type == 3)
     _y =  _initial_y + _r_y*cos(_omega_y*_track_time*0.001) - _r_y;
   if (_path_type == 4)
+  // ------------Archimedean Spiral-----------
     _y = _initial_y + _r_y*_track_time*0.001*cos(_omega_y*_track_time*0.001);
   return _y;
 }
@@ -178,6 +180,7 @@ float v_x_path (int _track_time, int _path_type, float _initial_x, float _r_x, f
   // ------------Circular------------
   if (_path_type == 3)
     _v_x =  _omega_x*r_x*cos(_omega_x*_track_time*0.001);
+  // ------------Archimedean Spiral-----------
   if (_path_type == 4)
     _v_x = r_x * (sin(_omega_x*_track_time*0.001) + _omega_x * track_time*0.001 * cos(_omega_x*_track_time*0.001));
  return _v_x;
@@ -196,6 +199,7 @@ float v_y_path (int _track_time, int _path_type, float _initial_y, float _r_y, f
   // ------------Circular------------
   if (_path_type == 3)
     _v_y =  -_omega_y*r_y*sin(_omega_y*_track_time*0.001);
+  // ------------Archimedean Spiral-----------
   if (_path_type == 4)
     _v_y = r_y * (cos(_omega_y*_track_time*0.001) - _omega_y * track_time*0.001 * cos(_omega_y*_track_time*0.001));
   return _v_y;
@@ -414,7 +418,6 @@ void loop() {
       Serial.print("valid: "); 
       Serial.print(valid);
       Serial.print("; ");
-      // Serial.printf("USV Position: (%0.15f, %0.15f); ", usv_lat, usv_lng);
       Serial.printf("USV Position: (");
       Serial.print(usv_lat, 15);
       Serial.print(", ");
