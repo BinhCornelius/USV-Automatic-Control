@@ -78,7 +78,7 @@ y_d = y_center + t;
 
 # ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/c88ee7df-4919-4ee9-af2e-d52cff19c3fc)
 
-
+Video chạy tàu: https://youtu.be/hp_wBoiv5dM
 
 
  
