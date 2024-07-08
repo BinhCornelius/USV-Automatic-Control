@@ -24,4 +24,34 @@ Do vấn đề kinh phí nên không thể có mô hình tàu với kích thư�
 
 # ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/eab4599e-2bb7-4ee1-b514-23c45b8b88ea)
 
+Để chuẩn bị chạy tàu, trạm điều khiển mặt đất được thiết lâp như hình 5.29. Trong đó, Laptop cá nhân đóng vai trò là trạm điều khiển mặt đất và ESP8266 sẽ giao tiếp với nhau bằng giao tiếp UDP thông qua wifi phát bởi cục router.
+
+# ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/2b23b75c-0202-4ca5-8603-d3a8e5330034)
+
+# Chạy tàu
+A. Chế độ thủ công
+Tạo một chương trình trên Qt để tạo các nút di chuyển cho tàu USV. Khi nhấn các nút “W”, “A”, “S”, “D” và “Q” trên bàn phím laptop hay là trạm điều khiển thì tàu USV sẽ di chuyển, các chức năng gán cho các phím này lần lượt là: Tăng ga, rẽ trái, giảm ga, rẽ phải và dừng hẳn. 
+Chương trình Qt này có cơ chế hoạt động như sau: Khi nhấn các nút điều khiển, chương trình sẽ bắt đầu gửi tín hiệu PWM cho ESP8266 bằng giao thức UDP, giá trị PWM sẽ thay đổi trong khoảng từ 0 đến 199 tuỳ vào nút điều khiển:
++ Khi nhấn giữ hoặc nháy nhiều lần nút “W”, chương trình sẽ gửi 2 tín hiệu PWM1 và PWM2 tăng dần từ 0 đến 199 với bước là 1 cho ESP8266. 2 tính hiệu này có giá trị tăng đều với nhau từ đó 2 động cơ tăng tốc cùng nhau  và quay cùng tốc độ.
++ Khi nhấn giữ “A” tín hiệu PWM2 tăng và PWM1 giảm giá trị với bước là 1. Khi đó động cơ 2 sẽ quay nhanh và tạo lực đẩy lớn hơn động cơ 1, điều nãy sẽ tạu cho USV 1 moment quay tạo ra chuyển động rẽ trái.
++ Ngược lại, Khi nhấn giữ “D” tín hiệu PWM1 tăng và PWM2 giảm giá trị với bước là 1. Khi đó động cơ 1 sẽ quay nhanh và tạo lực đẩy lớn hơn động cơ 2, điều nãy sẽ tạu cho USV 1 moment quay tạo ra chuyển động rẽ phải.
++ Khi nhấn giữ “S”, chương trình sẽ gửi 2 tín hiệu PWM1 và PWM2 giảm dần dần từ giá trị ban đầu về 0 với bước là 1. 2 tính hiệu này có giá trị giảm đều với nhau từ đó 2 động cơ giảm tốc cùng nhau và quay cùng tốc độ cho đến lúc dừng hẳn.
++ Nút “Q” là nút dừng khẩn cấp. Khi nhấn “Q” thì các giá trị PWM1 = 0 và PWM2 = 0 sẽ được gửi đi và khiến tàu dừng hẳn.
+Chế độ chạy thủ công được thử nghiệm bằng cách lái tàu chạy trên đài hồ Tiền như hình dưới.
+
+# ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/586ada2c-1343-48c0-9418-2e9e4ac23ce2)
+
+B. Chế độ tự động
+Chạy chế độ tự động với quỹ đạo đường thẳng va đường tròn trên hồ Tiền. Từ chương trình Qt thiết lập trước đó, công cụ Maps and Navigation của Qt được thêm vào và thiết lập để tạo bản đồ, sau đó thiết kế các ô nhập các thông số: loại đường (1 là đường thẳng, 2 là hình sin, 3 là đường tròn, 4 là hình xoắn ốc – phần này được lập trình trên Arduino IDE), bán kính theo x và y, và omega theo x và y là tốc độ góc của chuyển dộng tròn. 
+Đầu tiên, quỹ đạo đường thẳng sẽ được thử nghiệm, chọn 2 điểm là điểm đầu và cuối của quỹ đạo đường thẳng. Các điểm chọn trên bản đồ bằng cách click chuột sẽ để lại chấm tròn đen như hình dưới. Nút “Send Coodinates” được thiết kế để gửi toạ độ và các thông số khác qua cho ESP8266 và Nút Enable Key Control để chuyển sang chế độ thủ công. 
+
+# ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/34bc8b35-7fe0-49ed-932f-82fa4a91d6ae)
+
+Sau khi nhấn “Send Coordinates” tài sẽ bắt đầu chạy theo quỹ đạo đường thẳng đã được lập trình sẵn. Đặt thời gian chạy của tàu là 40s, trong quá trình tàu chạy theo quỹ đạo, vị trí của tàu sẽ được tổng hợp và gửi qua cho MATLAB sau mỗi 1s, tổng hợp lại các quỹ đạo đó, ta có được quỹ đạo di chuyển thực tế của USV như hình dưới. Trong hình, đường nét đứt thể hiện quỹ đạo mong muốn và đường nét liều thể hiện quỹ đạo tàu chạy thực tế.
+
+# ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/24faf5b2-f440-44a3-ab84-6093f59d2013)
+
+
+
+
 
