@@ -22,5 +22,6 @@ Thuật toán đã mô phỏng ở chương 3 được lập trình và gỡ l�
 
 Do vấn đề kinh phí nên không thể có mô hình tàu với kích thước vài tải trọng như tiêu đề của đồ án này, vì thế mô hình tàu thực thế đã thu nhỏ lại đã được hoàn thiện nhằm mục đích chạy thử thuật toán điều khiển bám quỹ đạo đã được trình bày ở chương II, hình ảnh của mô hình tàu thu nhỏ được thể hiện ở hình dưới.
 
-# ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/48f8da79-913f-487c-a1ab-7cc157a6bd14)
+# ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/eab4599e-2bb7-4ee1-b514-23c45b8b88ea)
+
 
