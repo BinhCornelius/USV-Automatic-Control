@@ -55,8 +55,17 @@ Sau khi nhấn “Send Coordinates” tài sẽ bắt đầu chạy theo quỹ �
 # ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/24faf5b2-f440-44a3-ab84-6093f59d2013)
 
 Dựa và đồ thị quỹ đạo có thể thấy rằng ban đầu tàu USV bám khá sát quỹ đạo đường thẳng, nhưng khi đến gần cuối quỹ đạo thì tàu bị lệch hướng và phải vòng lại để đến điểm cuối của quỹ đạo. Nhìn chung, quỹ đạo di chuyển thực tế bám khá sát so với quỹ đạo đầu vào.
-Sau đó, tàu USV sẽ được lập trình để chạy tác vụ bám theo quỹ đạo tròn, trong giao diện bản đồ Qt nhập loại đường là 3 – đường tròn, bán kính quỹ đạo là 2.5m và omega là 1, cuối cùng sẽ chọn tâm quỹ đạo trên bản đồ. Có thể biếu diễn phương trình quỹ đạo đầu vào như phương trình (5.1), đặt thời gian chạy (track duration) là 100s. Sau khi “Send Coordinates”, tàu sẽ tiến hành chạy bám theo quỹ đạo đường tròn như hình 5.35. Khi tàu hoàn thành quỹ đạo, đồ thị quỹ đạo được thể hiện như hình dưới.
-█({█(x_d (t)=x_center+2.5 sin⁡0.25t@y_d (t)=y_center+2.5 cos⁡0.25t )┤#(5.1) )
+Sau đó, tàu USV sẽ được lập trình để chạy tác vụ bám theo quỹ đạo tròn, trong giao diện bản đồ Qt nhập loại đường là 3 – đường tròn, bán kính quỹ đạo là 2.5m và omega là 1, cuối cùng sẽ chọn tâm quỹ đạo trên bản đồ. Có thể biếu diễn phương trình quỹ đạo đầu vào như phương trình bên dưới, đặt thời gian chạy (track duration) là 100s. Sau khi “Send Coordinates”, tàu sẽ tiến hành chạy bám theo quỹ đạo đường tròn như hình 5.35. Khi tàu hoàn thành quỹ đạo, đồ thị quỹ đạo được thể hiện như hình dưới.
+ x_d = x_center + 2.5*sin(0.25*t);
+ y_d = y_center = 2.5*cos(0.25*t);
+Lựa chọn quỹ đạo và thông số đường trong trên Qt
+
+# ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/bbfa26c0-bee0-47a9-92f6-c35bad0ed5a3)
+
+
+
+
+ 
 
 
 
