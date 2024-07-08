@@ -15,7 +15,7 @@
 #endif
 
 // Hằng số
-#define r_long 6378137.0 // Bán trục dài của ellipsoid (WGS84)
+#define a 6378137.0 // Bán trục dài của ellipsoid (WGS84)
 #define f 1.0 / 298.257223563 // Dẹt của ellipsoid (WGS84)
 #define k0 0.9996 // Hệ số tỉ lệ UTM
 #define E0 500000.0 // Kinh độ gốc UTM
@@ -225,7 +225,7 @@ float get_utm_x(float lat, float lon) {
     int zone = (int)((lon + 180) / 6) + 1;
     float lon0 = ((zone - 1) * 6 - 180 + 3) * pi / 180.0;
 
-    float N = r_long / sqrt(1 - e*e*sin(lat_rad)*sin(lat_rad));
+    float N = a / sqrt(1 - e*e*sin(lat_rad)*sin(lat_rad));
     float T = tan(lat_rad)*tan(lat_rad);
     float C = e*e/(1 - e*e)*cos(lat_rad)*cos(lat_rad);
     float A = cos(lat_rad)*(lon_rad - lon0);
@@ -244,12 +244,12 @@ float get_utm_y(float lat, float lon) {
     int zone = (int)((lon + 180) / 6) + 1;
     float lon0 = ((zone - 1) * 6 - 180 + 3) * pi / 180.0;
 
-    float N = r_long / sqrt(1 - e*e*sin(lat_rad)*sin(lat_rad));
+    float N = a / sqrt(1 - e*e*sin(lat_rad)*sin(lat_rad));
     float T = tan(lat_rad)*tan(lat_rad);
     float C = e*e/(1 - e*e)*cos(lat_rad)*cos(lat_rad);
     float A = cos(lat_rad)*(lon_rad - lon0);
 
-    float M = r_long * ((1 - e*e/4 - 3*e*e*e*e/64 - 5*e*e*e*e*e*e/256) * lat_rad 
+    float M = a * ((1 - e*e/4 - 3*e*e*e*e/64 - 5*e*e*e*e*e*e/256) * lat_rad 
                   - (3*e*e/8 + 3*e*e*e*e/32 + 45*e*e*e*e*e*e/1024) * sin(2 * lat_rad) 
                   + (15*e*e*e*e/256 + 45*e*e*e*e*e*e/1024) * sin(4 * lat_rad) 
                   - (35*e*e*e*e*e*e/3072) * sin(6 * lat_rad));
@@ -274,15 +274,15 @@ float get_latitude(float x, float y, int zone, bool isSouthernHemisphere) {
     float e = sqrtf(1 - powf(1 - f, 2)); // Độ lệch tâm
     float e1sq = e * e / (1 - e * e);
     float M = y / k0;
-    float mu = M / (r_long * (1 - e * e / 4 - 3 * e * e * e * e / 64 - 5 * e * e * e * e * e * e / 256));
+    float mu = M / (a * (1 - e * e / 4 - 3 * e * e * e * e / 64 - 5 * e * e * e * e * e * e / 256));
 
     float phi1Rad = mu + (3 * e / 2 - 27 * e * e * e / 32) * sinf(2 * mu) 
                       + (21 * e * e / 16 - 55 * e * e * e * e / 32) * sinf(4 * mu)
                       + (151 * e * e * e / 96) * sinf(6 * mu);
-    float N1 = r_long / sqrtf(1 - e * e * sinf(phi1Rad) * sinf(phi1Rad));
+    float N1 = a / sqrtf(1 - e * e * sinf(phi1Rad) * sinf(phi1Rad));
     float T1 = tanf(phi1Rad) * tanf(phi1Rad);
     float C1 = e1sq * cosf(phi1Rad) * cosf(phi1Rad);
-    float R1 = r_long * (1 - e * e) / powf(1 - e * e * sinf(phi1Rad) * sinf(phi1Rad), 1.5f);
+    float R1 = a * (1 - e * e) / powf(1 - e * e * sinf(phi1Rad) * sinf(phi1Rad), 1.5f);
     float D = (x - E0) / (N1 * k0);
 
     float lat = phi1Rad - (N1 * tanf(phi1Rad) / R1) * (D * D / 2 - (5 + 3 * T1 + 10 * C1 - 4 * C1 * C1 - 9 * e1sq) * powf(D, 4) / 24
@@ -301,15 +301,15 @@ float get_longitude(float x, float y, int zone, bool isSouthernHemisphere) {
     float e = sqrtf(1 - powf(1 - f, 2)); // Độ lệch tâm
     float e1sq = e * e / (1 - e * e);
     float M = y / k0;
-    float mu = M / (r_long * (1 - e * e / 4 - 3 * e * e * e * e / 64 - 5 * e * e * e * e * e * e / 256));
+    float mu = M / (a * (1 - e * e / 4 - 3 * e * e * e * e / 64 - 5 * e * e * e * e * e * e / 256));
 
     float phi1Rad = mu + (3 * e / 2 - 27 * e * e * e / 32) * sinf(2 * mu) 
                       + (21 * e * e / 16 - 55 * e * e * e * e / 32) * sinf(4 * mu)
                       + (151 * e * e * e / 96) * sinf(6 * mu);
-    float N1 = r_long / sqrtf(1 - e * e * sinf(phi1Rad) * sinf(phi1Rad));
+    float N1 = a / sqrtf(1 - e * e * sinf(phi1Rad) * sinf(phi1Rad));
     float T1 = tanf(phi1Rad) * tanf(phi1Rad);
     float C1 = e1sq * cosf(phi1Rad) * cosf(phi1Rad);
-    float R1 = r_long * (1 - e * e) / powf(1 - e * e * sinf(phi1Rad) * sinf(phi1Rad), 1.5f);
+    float R1 = a * (1 - e * e) / powf(1 - e * e * sinf(phi1Rad) * sinf(phi1Rad), 1.5f);
     float D = (x - E0) / (N1 * k0);
 
     float lon = (D - (1 + 2 * T1 + C1) * powf(D, 3) / 6 
@@ -529,9 +529,7 @@ void loop() {
       if (currentMillis - previousMillis2 >= interval) {
             // Cập nhật thời gian trước đó
         previousMillis2= currentMillis;
-        //integral_u += u_error * track_time * 0.001;
         integral_u += u_error;
-        //integral_yaw += wrap_2_pi(yaw_error * track_time * 0.001);
         integral_yaw += yaw_error;
         thrust = Kp_u * u_error + Ki_u * integral_u + Kd_u * derivative_u;
         moment = Kp_yaw * yaw_error + Ki_yaw * integral_yaw + Kd_yaw * derivative_yaw;
@@ -552,12 +550,9 @@ void loop() {
     Serial.print("Moment: "); 
     Serial.print(moment);
     Serial.println("; ");
-    //Serial.printf("thrust: %.0f; moment: %.0f; ", thrust, moment);
 
-    // ------------CONTROL MOTOR------------
-
+    // ------------CONTROL MOTOR-------------
     motor_control(thrust, moment);
-    //delay(1000);
   }  
 
   // ----------------------------------------------- MANUAL MODE -----------------------------------------------
