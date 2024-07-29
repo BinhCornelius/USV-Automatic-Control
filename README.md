@@ -1,6 +1,10 @@
 # USV-Automatic-Control
 This's my thesis project that I've done and finished in Aerospace Engineering Dept. group, Department of Vehicle and Energy Conversion Engineering, Hanoi University of Science and Technology.
 
+# Hệ thống Hardware in the loop
+1 hệ thống HIL sẽ được thiết lập để kiểm tra phản hồi từ của động cơ với chương trình điều khiển mô phỏng trên Simulink. Hệ thống gồm phần mềm là MATLAB Simulink để nhập quỹ đạo chuyển động và phần cứng gồm card I/O PCI 6221, SCB 68 và 2 động cơ gắn với bộ điều tốc ESC và Pin 3S 12V 2200 mAh. Quá trình động cơ hoạt động sẽ được đo tốc độ bằng cảm biến để xuất đồ thị tốc độ quay của động cơ theo thời gian.
+
+
 # Sơ đồ mạch sử dụng trong dự án
 Sơ đồ hệ thống điện tàu USV thực tế được thể hiện ở hình 5.25 và bao gồm:
 + Module Wifi – ESP8266 đóng vai trò làm vi điều khiển chính.
