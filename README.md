@@ -2,7 +2,10 @@
 This's my thesis project that I've done and finished in Aerospace Engineering Dept. group, Department of Vehicle and Energy Conversion Engineering, Hanoi University of Science and Technology.
 
 # Hệ thống Hardware in the loop
-1 hệ thống HIL sẽ được thiết lập để kiểm tra phản hồi từ của động cơ với chương trình điều khiển mô phỏng trên Simulink. Hệ thống gồm phần mềm là MATLAB Simulink để nhập quỹ đạo chuyển động và phần cứng gồm card I/O PCI 6221, SCB 68 và 2 động cơ gắn với bộ điều tốc ESC và Pin 3S 12V 2200 mAh. Quá trình động cơ hoạt động sẽ được đo tốc độ bằng cảm biến để xuất đồ thị tốc độ quay của động cơ theo thời gian.
+1 hệ thống HIL sẽ được thiết lập để kiểm tra phản hồi từ của động cơ với chương trình điều khiển mô phỏng trên Simulink. Hệ thống gồm phần mềm là MATLAB Simulink để nhập quỹ đạo chuyển động và phần cứng gồm card I/O PCI 6221, SCB 68 và 2 động cơ gắn với bộ điều tốc ESC và Pin 3S 12V 2200 mAh. Quá trình động cơ hoạt động sẽ được đo tốc độ bằng cảm biến để xuất đồ thị tốc độ quay của động cơ theo thời gian. Sơ đồ hệ thống ở hình dưới
+![image](https://github.com/user-attachments/assets/9a5eef31-aa89-42f5-a3e3-cfb421202d4d)
+Tạo một cơ cấu gá để cố định động cơ và cảm biến như hình:
+![image](https://github.com/user-attachments/assets/3e90e18c-2ee6-48c0-92a4-ba14aadde59b)
 
 
 # Sơ đồ mạch sử dụng trong dự án
