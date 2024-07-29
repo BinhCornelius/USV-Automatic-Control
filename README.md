@@ -73,7 +73,7 @@ Lựa chọn quỹ đạo và thông số đường trong trên Qt
 
 Kết quả so sánh quỹ đạo đi được với yêu cầu
 
-# ![image](https://github.com/BinhCornelius/USV-Automatic-Control/assets/170936970/c07cbd6d-a504-42ef-9645-ec291a87cd61)
+![image](https://github.com/user-attachments/assets/5dfdd3f4-6c56-4518-8c66-ae19eebde117)
 
 Tương tự, các kết quả của quỹ đạo hình sine và xoắn ốc được thể hiện ở hình dưới:
 + Quỹ đạo xoắn ốc
