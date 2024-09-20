@@ -124,7 +124,7 @@ float sqr(float base) {
 // ------------------------------------* TRAJECTORY TRACKING *------------------------------------
 // -----------------------------------------------------------------------------------------------
 //
-float get_path_x (int _track_time, int _path_type, float _initial_x, float _r_x, float _omega_x)
+float get_path_x_xyz (int _track_time, int _path_type, float _initial_x, float _r_x, float _omega_x)
 {
   float _x;
 
@@ -143,7 +143,7 @@ float get_path_x (int _track_time, int _path_type, float _initial_x, float _r_x,
  return _x;
 }
 
-float get_path_y (int _track_time, int _path_type, float _initial_y, float _r_y, float _omega_y)
+float get_path_y_xyz (int _track_time, int _path_type, float _initial_y, float _r_y, float _omega_y)
 {
   float _y;
   if (_path_type == 1)
