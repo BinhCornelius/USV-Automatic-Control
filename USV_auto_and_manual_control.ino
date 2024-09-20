@@ -167,7 +167,7 @@ float delta_2(float _a, float _b)
   return _delta_2;
 }
 
-float v_x_path (int _track_time, int _path_type, float _initial_x, float _r_x, float _omega_x)
+float v_x_path_xyz (int _track_time, int _path_type, float _initial_x, float _r_x, float _omega_x)
 {
   float _v_x;
   // ------------Straight------------
@@ -185,7 +185,7 @@ float v_x_path (int _track_time, int _path_type, float _initial_x, float _r_x, f
  return _v_x;
 }
 
-float v_y_path (int _track_time, int _path_type, float _initial_y, float _r_y, float _omega_y)
+float v_y_path_xyz (int _track_time, int _path_type, float _initial_y, float _r_y, float _omega_y)
 {
   float _v_y;
   // ------------Straight------------
